@@ -1,5 +1,5 @@
 //Vue
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, computed } from "vue";
 //Pinia
 import { defineStore } from "pinia";
 //Servicios
@@ -18,6 +18,9 @@ export const useBebidasStore = defineStore("bebidas", () => {
   });
   const recetas = ref([]);
   const receta = ref({});
+  const noRecetas = computed(()=>{
+    recetas.value.lenght === 0;
+  })
 
   onMounted(async () => {
     const {
@@ -44,6 +47,7 @@ export const useBebidasStore = defineStore("bebidas", () => {
     busqueda,
     recetas,
     receta,
+    noRecetas,
     obtenerRecetas,
     seleccionarBebida
   };
